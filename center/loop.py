@@ -42,7 +42,18 @@ def reconcile_at_center(subject_views: dict[str, str], minds, criterion: Criteri
         others = [t for n, t in deposits.items() if n != m.name]
         candidates[f"meeting:{m.name}"] = m.reconcile(subject_views.get(m.channel, ""), others)
 
-    # --- crystallize + witness: judge each candidate, ground it, score under the criterion ---
+    return witness_candidates(candidates, subject_views, criterion, judge, dims)
+
+
+def witness_candidates(candidates: dict[str, str], subject_views: dict[str, str],
+                       criterion: CriterionSpec, judge, dims) -> Certificate:
+    """The witnessed-verdict half: judge each candidate, ground it, score under the NAMED criterion,
+    pick the winner, emit a Certificate. Usable on candidates produced by ANY minds — including a LIVE
+    run where the candidate texts came from real model minds (the fn boundary the adapters abstract)."""
+    if not candidates:
+        return Certificate(f"criterion={criterion.name}", Verdict.UNVERIFIABLE, _ORACLE,
+                           criterion=criterion.to_dict(),
+                           evidence=(("reason", "no candidates to witness"),))
     scores = {}
     for label, text in candidates.items():
         dim = dict(judge.score(text, subject_views, dims))
@@ -53,7 +64,6 @@ def reconcile_at_center(subject_views: dict[str, str], minds, criterion: Criteri
         scores[label] = {**dim, "grounding_penalty": round(pen, 6), "weighted": weighted}
 
     winner = max(scores, key=lambda k: scores[k]["weighted"])
-    # over-build evidence: any unsupported tokens in the winning candidate
     over = sorted(unsupported_tokens(candidates[winner], subject_views))[:8]
     ev = (("winner_weighted", str(scores[winner]["weighted"])),
           ("candidates", str(len(scores))),
