@@ -85,6 +85,32 @@ def test_fail_closed():
     assert reconcile_at_center(VIEWS, one_mind, CORRECT, StubJudge()).verdict is Verdict.UNVERIFIABLE
 
 
+# --- Adapters: the live path is expressible + hermetically testable with a fake model call ---
+def test_callable_adapters_with_fake_model():
+    from center.adapters import CallableMind, CallableJudge
+    import json as _j
+
+    def fake_model(prompt: str) -> str:
+        # a deterministic stand-in for a model call
+        if "Score this candidate" in prompt:
+            # a fake judge: reward candidates that mention "reconcile"
+            s = 0.9 if "reconcile" in prompt.lower() else 0.4
+            return "scores: " + _j.dumps({d: s for d in
+                   ("novelty", "structure", "function", "completeness", "grounded")})
+        return "PROPOSAL: " + prompt.split(":")[-1].strip()[:60] + " (reconcile)"
+
+    minds = [CallableMind("A", "text", fake_model), CallableMind("B", "diagram", fake_model)]
+    cert = reconcile_at_center(VIEWS, minds, CORRECT, CallableJudge(fake_model))
+    assert cert.verdict is Verdict.VERIFIED and cert.winner in cert.scores
+
+
+def test_callable_judge_failsafe_on_garbage():
+    from center.adapters import CallableJudge
+    j = CallableJudge(lambda p: "not json at all")
+    sc = j.score("anything", VIEWS)
+    assert all(v == 0.0 for v in sc.values())   # unreadable witness -> no credit
+
+
 if __name__ == "__main__":
     import sys
     fns = [v for k, v in sorted(globals().items()) if k.startswith("test_") and callable(v)]
