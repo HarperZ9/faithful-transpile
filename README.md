@@ -55,6 +55,24 @@ This is the *research*. Where it names a built system, the buildable implementat
 internal tooling are not part of this repository; what is published is the work and its
 evidence.
 
+## The center, running — `center/`
+
+A runnable seed of the paper's neutral center (v1, stdlib, hermetic). A human authors a **named,
+weighted criterion**; a subject is rendered into two perceptible forms; two pluggable minds with
+different senses reconcile it (solo → meeting → crystallize); an external judge scores each candidate;
+a grounding guardrail penalizes over-build; and a **Certificate naming the criterion** is emitted.
+Criterion-relativity is live — the winner *flips* with the named criterion.
+
+```
+python -m center reconcile --subject <path> --criterion creator.json     # novelty-weighted → a solo wins
+python -m center reconcile --subject <path> --criterion researcher.json   # wholeness-weighted → the meeting wins
+python -m center.tests.test_center                                        # 6/6 hermetic tests
+```
+
+The minds and judge are **pluggable interfaces** (v1 ships deterministic stubs, no model/network);
+the live perception/generation organs drop in behind the same interface. This is the engine's *operation*,
+runnable — not the full live engine.
+
 ---
 
 *Zain Dana Harper · [harperz9.github.io](https://harperz9.github.io) · MIT · 2026.*
