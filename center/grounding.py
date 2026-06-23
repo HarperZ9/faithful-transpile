@@ -15,13 +15,26 @@ def _salient(text: str) -> set[str]:
     return {w.lower() for w in _WORD.findall(text)}
 
 
+# Common English words carry no claim — flagging them as "unsupported" is noise, not grounding.
+# (The live run surfaced this: words like must/pass/execute were over-flagged.) A real semantic
+# grounding witness does better; this heuristic only catches *salient* unsupported tokens.
+_STOP = {
+    "text", "diagram", "from", "reconciled", "mine", "theirs", "this", "that", "with", "into",
+    "toward", "telos", "proposal", "channel", "must", "pass", "passes", "execute", "executes",
+    "executing", "generalize", "consequential", "producer", "pluggable", "before", "after", "then",
+    "every", "each", "into", "onto", "through", "across", "where", "which", "would", "could", "should",
+    "their", "them", "they", "what", "when", "while", "about", "above", "below", "between", "single",
+    "best", "form", "result", "action", "actions", "decision", "decisions", "system", "value", "values",
+    "make", "makes", "made", "take", "takes", "using", "used", "uses", "have", "having", "been", "into",
+}
+
+
 def unsupported_tokens(candidate: str, subject_views: dict[str, str]) -> set[str]:
-    """Salient tokens in the candidate not present in ANY of the subject's perceptible forms,
-    minus the scaffolding words the minds add (channel/reconcile markers)."""
+    """SALIENT tokens in the candidate absent from every perceptible form of the subject — i.e. the
+    candidate asserting nouns/terms the subject does not contain (the over-build signal). Excludes
+    common English words (which carry no claim) so the flag means something."""
     corpus = _salient(" ".join(subject_views.values()))
-    scaffold = {"text", "diagram", "from", "reconciled", "mine", "theirs", "this", "that",
-                "with", "into", "toward", "telos", "proposal", "channel"}
-    return {t for t in _salient(candidate) if t not in corpus and t not in scaffold}
+    return {t for t in _salient(candidate) if t not in corpus and t not in _STOP}
 
 
 def grounding_penalty(candidate: str, subject_views: dict[str, str]) -> float:
