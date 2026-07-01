@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="docs/brand/faithful-transpile-hero.png" alt="Faithful Transpile: Cross-Mind Faithfulness Thesis">
+</p>
+
 # The Conservation of Faithfulness
 
 > How a subject crosses between minds, and the neutral center where it finds its form.
