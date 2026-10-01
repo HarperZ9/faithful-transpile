@@ -1,5 +1,5 @@
 <p align="center">
-  <img src=".github/assets/zentropy-banner.png" alt="Faithful Transpile: Cross-Mind Faithfulness Thesis">
+  <img src=".github/assets/banner.png" alt="Faithful Transpile: Cross-Mind Faithfulness Thesis">
 </p>
 
 # The Conservation of Faithfulness
@@ -84,4 +84,4 @@ runnable — not the full live engine.
 
 ---
 
-**[Zentropy Labs](https://github.com/ZentropyLabs-ai)** · order out of entropy. An independent lab building evidence-first tools that leave a re-checkable artifact behind. Built by Zain Dana Harper in Seattle. The full workbench is at [Project Telos](https://harperz9.github.io).
+Built by **[Zain Dana Harper](https://harperz9.github.io)** in Seattle: evidence-first tools that leave a re-checkable artifact behind. The full workbench is at [Project Telos](https://harperz9.github.io).
