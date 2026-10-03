@@ -5,7 +5,7 @@
 # The Conservation of Faithfulness
 
 > How a subject crosses between minds, and the neutral center where it finds its form.
-> Original work by **Zain Dana Harper**. MIT-licensed · authored · dated 2026-06-23.
+> Original work by **Zain Dana Harper**. Text: CC BY 4.0. Code: MIT. Authored and dated 2026-06-23.
 
 A companion to the accountability research at
 **[harperz9.github.io](https://harperz9.github.io)**. That work argues accountability can
@@ -77,9 +77,21 @@ The minds and judge are **pluggable interfaces** (v1 ships deterministic stubs, 
 the live perception/generation organs drop in behind the same interface. This is the engine's *operation*,
 runnable — not the full live engine.
 
+## Licence
+
+Text: CC BY 4.0. Code: MIT.
+
+The thesis and its companion papers (00-ABSTRACT, THESIS, PRINCIPLE, ENDGAME,
+VERDICT, DEMO-two-minds and vision-arm-REPORT) are licensed CC BY 4.0. The
+published version is deposited at
+[doi.org/10.5281/zenodo.23126484](https://doi.org/10.5281/zenodo.23126484) under
+the same licence. Share and adapt them with credit to Zain Dana Harper; the terms
+are in [`LICENSE-TEXT`](LICENSE-TEXT). The code in `center/` and `sims/` stays
+under the MIT terms in [`LICENSE`](LICENSE).
+
 ---
 
-*Zain Dana Harper · [harperz9.github.io](https://harperz9.github.io) · MIT · 2026.*
+*Zain Dana Harper · [harperz9.github.io](https://harperz9.github.io) · Text CC BY 4.0, code MIT · 2026.*
 *Proof before trust — including about authorship.*
 
 ---
