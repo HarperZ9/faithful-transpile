@@ -1,4 +1,4 @@
-"""Teardowo — attack our own results until they break or survive. No mercy.
+"""Teardown — attack our own results until they break or survive. No mercy.
 
 The headline claims to falsify:
   C1  "the endpoint exceeds the points" (commons recovers truth no agent can see)
