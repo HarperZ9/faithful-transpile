@@ -1,8 +1,18 @@
-<p align="center">
-  <img src=".github/assets/banner.png" alt="Faithful Transpile: Cross-Mind Faithfulness Thesis">
-</p>
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/HarperZ9/faithful-transpile/main/docs/art/hero-dark.svg">
+  <img src="https://raw.githubusercontent.com/HarperZ9/faithful-transpile/main/docs/art/hero-light.svg" alt="faithful-transpile: Working paper and experiments on faithfulness across minds. A fan of ruled sheets drawn in fine lines, the top sheet lit by a bright core." width="100%">
+</picture>
 
-# The Conservation of Faithfulness
+# faithful-transpile
+
+Working paper and experiments on faithfulness across minds.
+
+```
+python sims/<file>.py
+```
+
+[![license](https://img.shields.io/badge/license-CC_BY_4.0%2C_MIT-e6e1d6?style=flat-square&labelColor=1a1712)](https://github.com/HarperZ9/faithful-transpile/blob/main/LICENSE)
+![python](https://img.shields.io/badge/language-python-e6e1d6?style=flat-square&labelColor=1a1712)
 
 > How a subject crosses between minds, and the neutral center where it finds its form.
 > Original work by **Zain Dana Harper**. Text: CC BY 4.0. Code: MIT. Authored and dated 2026-06-23.
