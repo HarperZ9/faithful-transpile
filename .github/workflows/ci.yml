@@ -44,3 +44,9 @@ jobs:
             fi
           done
           echo "every sealed file matches its committed blob"
+      # The seal itself: every file in MANIFEST.sha256 must match its digest. The
+      # .gitattributes pin keeps sealed bytes unchanged on the Windows leg.
+      - name: Sealed files match MANIFEST.sha256
+        if: ${{ !cancelled() }}
+        shell: bash
+        run: sha256sum --strict -c MANIFEST.sha256

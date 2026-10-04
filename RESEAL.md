@@ -63,3 +63,42 @@ outside the seal, so a new entry here never changes a sealed digest.
 | `sims/teardown.py` | `4d356b155c8e012467606cad9e57dae40051e81f457b5971b2fbd3afccd2efe1` | `35cf67a83df7714b7770fb84a307f307b5549545198125bd8163afd7a5973c55` |
 | `sims/transpile_conservation.py` | `fdf5ffe0287259d4b5f7c84c6eb15b17f8a235078caee90c3921eb046c697a2d` | `7b35b9f9fce0003404e072506ca424cd6d70bd9c56d187c0a4d72ab7966331c1` |
 | `vision-arm-REPORT.md` | `5fdbbd9a1c557bc25870b188c5565192d05da08ce2c74b257aa96cb9b5bfc2a6` | `d589c6ed527ff6031c5a9e50367a25bafa9932a3d8dc40e7f29022408a58f1be` |
+
+## 2026-10-04: README.md and .gitignore resealed after approved content changes; cache entries removed
+
+This entry resolves the five entries the previous entry left failing.
+
+- Approval: the author approved this in chat on 2026-10-04, relayed verbatim:
+  "You no longer need to wait on my approval. Approved. Second request is a yes as well."
+- Content changed. Unlike the entry above, `README.md` and `.gitignore` were edited
+  after the original seal at commit 21651bf (2026-06-23). The old digests match
+  their bytes at 21651bf exactly. The new digests are SHA-256 over the committed
+  LF blobs at commit 70db4f0, so they attest the current text, which differs from
+  the text the original seal covered.
+  - `README.md`, edited in 9100d79, 0ca2107, 0ad5832, f5475a4 and b5f6dfc
+    (banner, name, licence and art changes):
+    - before (bytes at 21651bf): `2dd4c00f02de980778c32fc16ed9b494936b76db7b1bd88556c5c99a24dcd2d0`
+    - after (bytes at 70db4f0): `e3b02b906c61e9d3fe2f4c85e68131f5e3935eb1e841f21cb466cddbece7a05c`
+  - `.gitignore`, edited in be0b498, 01817d8, e54a00a and c770981 (ignore rules
+    for CLAUDE.local.md, .env, dist/ and .envrc):
+    - before (bytes at 21651bf): `862263fa1f46c20f0d1e4dac5ffcc75abd55c08211b2c3864c5f8764b9d87793`
+    - after (bytes at 70db4f0): `a6cc68210e57dd7989c5eb7a3ea106fe677f5432cdf736759e776bd6cbdac3f5`
+  - The text the original seal covered stays readable with `git show 21651bf:README.md`
+    and `git show 21651bf:.gitignore`.
+- Removed lines: three entries named files under `.ruff_cache/`, a local lint cache.
+  No commit on any branch of this repository has ever contained `.ruff_cache/`, so
+  those lines never covered published content and no reader could check them. They
+  are removed. Their old digests, for the record:
+  - `.ruff_cache/.gitignore`: `9e3a60f1e6ec4ae60215c11d54b171392745ec25e9dded433d5bd921363af316`
+  - `.ruff_cache/0.15.11/14640478600706016845`: `2ad0f5a0cd278003a8a44e3d09d6f261c51277a433b95dfa1decd6f5c34970a2`
+  - `.ruff_cache/CACHEDIR.TAG`: `5953156d7e0c564a427251316eaf26f8870e6483ae2197f916b630e4f93e31ae`
+- The other 43 digests are unchanged. The manifest now lists 45 files.
+- `MANIFEST.sha256` before: `cc5a2d317ff183a50f1aec6188417c5d9c61eaaa2b73ed2695b20261933ca95d`
+- `MANIFEST.sha256` after: `95a923102af31037507b955855dd307f404c728bb81086c1e5953e895e5c4c98`
+- CI now runs `sha256sum -c MANIFEST.sha256` on Linux and on Windows with
+  `core.autocrlf=true`, so a future edit to a sealed file fails CI until it is
+  resealed with an entry here.
+- External anchors: none exist for this seal; none was added.
+- Does not prove: the new `README.md` and `.gitignore` digests attest their current
+  bytes only. They do not carry the original 2026-06-23 seal forward to the new
+  text, and they make no claim about what the edits changed beyond the bytes.
